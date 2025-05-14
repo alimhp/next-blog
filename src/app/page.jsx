@@ -1,6 +1,10 @@
 import Link from "next/link";
 import Button from "../ui/Button";
 
+export const metadata = {
+  title: "خانه | بلاگ اپ",
+};
+
 export default function Home() {
   return (
     <div>
