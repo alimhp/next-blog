@@ -158,15 +158,6 @@
     @apply bg-red-500 text-white;
   }
 
-  .spinner {
-    margin: 3.2rem auto 1.6rem;
-    width: 60px;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    border: 8px solid rgb(var(--color-primary-900));
-    border-right-color: rgb(var(--color-primary-200));
-    animation: rotate 1s infinite linear;
-  }
 
   .spinner-mini {
     margin: 0;
@@ -184,6 +175,16 @@
     }
   }
 } */
+
+.spinner {
+  /* margin: 3.2rem auto 1.6rem; */
+  width: 60px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 8px solid rgb(var(--color-primary-900));
+  border-right-color: rgb(var(--color-primary-200));
+  animation: rotate 1s infinite linear;
+}
 
 * {
   box-sizing: border-box;
