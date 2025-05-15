@@ -5,10 +5,9 @@ import Spinner from "../../ui/Spinner";
 export const metadata = {
   title: "بلاگ ها",
 };
-async function BlogPage() {
+function BlogPage() {
   return (
     <div>
-      <h1>post list :</h1>
       <Suspense fallback={<Spinner />}>
         <PostLists />
       </Suspense>
