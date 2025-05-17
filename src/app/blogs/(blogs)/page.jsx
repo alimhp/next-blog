@@ -1,6 +1,6 @@
 import { Suspense } from "react";
-import PostLists from "./_components/PostLists";
-import Spinner from "../../ui/Spinner";
+import PostLists from "../_components/PostLists";
+import Spinner from "../../../ui/Spinner";
 
 export const metadata = {
   title: "بلاگ ها",

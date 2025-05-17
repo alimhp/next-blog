@@ -12,7 +12,6 @@ async function PostLists() {
   const {
     data: { posts },
   } = await res.json();
-  console.log(posts);
 
   return (
     <div className="grid grid-cols-12 gap-8">

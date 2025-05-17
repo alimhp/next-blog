@@ -1,4 +1,4 @@
-import CategoryList from "./_components/CategoryList";
+import CategoryList from "../_components/CategoryList";
 
 const Layout = ({ children }) => {
   return (
