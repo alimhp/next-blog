@@ -7,6 +7,7 @@ import * as yup from "yup";
 import { signupApi } from "../../../services/authServices";
 import toast from "react-hot-toast";
 import Link from "next/link";
+import { useAuth } from "../../../context/AuthContext";
 
 const schema = yup
   .object({
@@ -32,16 +33,10 @@ function signup() {
     resolver: yupResolver(schema),
     mode: "onTouched",
   });
+  const { signup } = useAuth();
 
   const onSubmit = async (values) => {
-    try {
-      const { user, message } = await signupApi(values);
-      //   console.log(user, message);
-      toast.success(message);
-    } catch (error) {
-      //   console.log(error?.response?.data?.message);
-      toast.error(error?.response?.data?.message);
-    }
+    await signup(values);
   };
 
   return (
@@ -95,6 +90,9 @@ function signup() {
         >
           تایید
         </Button>
+        <Link href="/signin" className="hover:text-blue-600">
+          قبلا ثبت نام کرده ام
+        </Link>
       </form>
     </div>
   );

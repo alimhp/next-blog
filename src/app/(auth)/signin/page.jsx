@@ -4,9 +4,8 @@ import RHFTextField from "../../../ui/RHFTextField";
 import Button from "../../../ui/Button";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { signinApi } from "../../../services/authServices";
 import Link from "next/link";
-import toast from "react-hot-toast";
+import { useAuth } from "../../../context/AuthContext";
 
 const schema = yup
   .object({
@@ -27,16 +26,13 @@ function page() {
     resolver: yupResolver(schema),
     mode: "onTouched",
   });
+
+  const { signin } = useAuth();
+
   const onSubmit = async (values) => {
-    try {
-      const { user, message } = await signinApi(values);
-      //   console.log(user, message);
-      toast.success(message);
-    } catch (error) {
-      //   console.log(error?.response?.data?.message);
-      toast.error(error?.response?.data?.message);
-    }
+    await signin(values);
   };
+
   return (
     <div>
       <h1 className="!mb-10  text-center ">ورود به اکانت </h1>
@@ -82,10 +78,10 @@ function page() {
         >
           ورود
         </Button>
-        <Link href="/signup" className="hover:text-blue-700">
+        <Link href="/signup" className="!mt-12 hover:text-blue-700">
           هنوز ثبت نام نکرد
         </Link>
-      </form>
+      </form>{" "}
     </div>
   );
 }
