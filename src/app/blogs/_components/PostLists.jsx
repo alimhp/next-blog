@@ -6,13 +6,14 @@ import Avatar from "../../../ui/Avatar";
 import Author from "./Author";
 import PostInteraction from "./PostInteraction";
 import { toPersianDigits } from "../../../utils/numberFormatter";
+import { getPosts } from "../../../services/postServices";
 
 async function PostLists() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/post/list`);
-  const {
-    data: { posts },
-  } = await res.json();
-
+  // const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/post/list`);
+  // const {
+  //   data: { posts },
+  // } = await res.json();
+  const posts = await getPosts();
   return (
     <div className="grid grid-cols-12 gap-8">
       {posts.map((post) => (
