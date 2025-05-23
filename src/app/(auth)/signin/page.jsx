@@ -4,26 +4,21 @@ import RHFTextField from "../../../ui/RHFTextField";
 import Button from "../../../ui/Button";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { signupApi } from "../../../services/authServices";
-import toast from "react-hot-toast";
+import { signinApi } from "../../../services/authServices";
 import Link from "next/link";
+import toast from "react-hot-toast";
 
 const schema = yup
   .object({
-    name: yup
-      .string()
-      .min(5, "حداقل 5 کارکتر")
-      .max(30)
-      .required("وارد کردن نام و نام خانوادگی الزامی است "),
     email: yup
       .string()
       .email("ایمیل نا معتبر است")
       .required(" وارد کردن ایمیل الزامی است"),
-    password: yup.string().min(8).required("وارد کردن پسورد الزامی است"),
+    password: yup.string().required("وارد کردن پسورد الزامی است"),
   })
   .required();
 
-function signup() {
+function page() {
   const {
     register,
     handleSubmit,
@@ -32,10 +27,9 @@ function signup() {
     resolver: yupResolver(schema),
     mode: "onTouched",
   });
-
   const onSubmit = async (values) => {
     try {
-      const { user, message } = await signupApi(values);
+      const { user, message } = await signinApi(values);
       //   console.log(user, message);
       toast.success(message);
     } catch (error) {
@@ -43,18 +37,10 @@ function signup() {
       toast.error(error?.response?.data?.message);
     }
   };
-
   return (
     <div>
-      <h1 className="!mb-10  text-center font-bold ">ثبت نام </h1>
-      <form onSubmit={handleSubmit(onSubmit)} className="!space-y-10">
-        <RHFTextField
-          label="نام و نام خانوادکی"
-          name="name"
-          register={register}
-          isRequired
-          errors={errors}
-        />
+      <h1 className="!mb-10  text-center ">ورود به اکانت </h1>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <RHFTextField
           label="ایمیل"
           name="email"
@@ -77,27 +63,31 @@ function signup() {
           variant="primary"
           className="
           w-full 
-          h-12 
+          h-12 /* Fixed height */
           rounded-sm 
           bg-blue-500 
           text-white 
-          font-medium 
+          font-medium /* Better than bold for buttons */
+          hover:bg-blue-600 /* Darker on hover */
           focus:bg-blue-500 
           focus:ring-2 
           focus:ring-blue-300 
           focus:ring-opacity-50 
-          shadow-md 
-          hover:shadow-lg 
-          active:shadow-sm
-          transition-all
+          shadow-md /* Medium shadow */
+          hover:shadow-lg /* Larger shadow on hover */
+          active:shadow-sm /* Smaller shadow when clicked */
+          transition-all /* Smooth transitions for all properties */
           duration-200
           "
         >
-          تایید
+          ورود
         </Button>
+        <Link href="/signup" className="hover:text-blue-700">
+          هنوز ثبت نام نکرد
+        </Link>
       </form>
     </div>
   );
 }
 
-export default signup;
+export default page;

@@ -4,6 +4,7 @@ const app = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BASE_URL,
   withCredentials: true,
   //   پراپرتی بالا باید true
+  //برای ساخت کوکی های اکسسز و رفرش توکن
 });
 
 const http = {
