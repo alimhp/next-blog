@@ -59,20 +59,20 @@ function page() {
           variant="primary"
           className="
           w-full 
-          h-12 /* Fixed height */
+          h-12 
           rounded-sm 
           bg-blue-500 
           text-white 
-          font-medium /* Better than bold for buttons */
-          hover:bg-blue-600 /* Darker on hover */
+          font-medium 
+          hover:bg-blue-600 
           focus:bg-blue-500 
           focus:ring-2 
           focus:ring-blue-300 
           focus:ring-opacity-50 
-          shadow-md /* Medium shadow */
-          hover:shadow-lg /* Larger shadow on hover */
-          active:shadow-sm /* Smaller shadow when clicked */
-          transition-all /* Smooth transitions for all properties */
+          shadow-md 
+          hover:shadow-lg 
+          active:shadow-sm 
+          transition-all         
           duration-200
           "
         >

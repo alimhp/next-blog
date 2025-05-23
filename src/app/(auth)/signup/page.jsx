@@ -8,6 +8,7 @@ import { signupApi } from "../../../services/authServices";
 import toast from "react-hot-toast";
 import Link from "next/link";
 import { useAuth } from "../../../context/AuthContext";
+import SpinnerMini from "../../../ui/SpinnerMini";
 
 const schema = yup
   .object({
@@ -67,10 +68,15 @@ function signup() {
           type="password"
           isRequired
         />
-        <Button
-          type="submite"
-          variant="primary"
-          className="
+        {isLoading ? (
+          <div className="flex justify-center">
+            <SpinnerMini />
+          </div>
+        ) : (
+          <Button
+            type="submite"
+            variant="primary"
+            className="
           w-full 
           h-12 
           rounded-sm 
@@ -87,9 +93,10 @@ function signup() {
           transition-all
           duration-200
           "
-        >
-          تایید
-        </Button>
+          >
+            تایید
+          </Button>
+        )}
         <Link href="/signin" className="hover:text-blue-600">
           قبلا ثبت نام کرده ام
         </Link>
