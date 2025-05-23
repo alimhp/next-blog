@@ -8,6 +8,7 @@ export async function generateMetadata({ params }) {
     title: `پست ${post.title}`,
   };
 }
+
 export async function generateStaticParams() {
   const posts = await getPosts();
   if (!posts || !Array.isArray(posts)) return [];
@@ -16,6 +17,7 @@ export async function generateStaticParams() {
   }));
   return postSlugs;
 }
+
 async function SinglePost({ params }) {
   const post = await getpostbySlug(params.postSlug);
 
