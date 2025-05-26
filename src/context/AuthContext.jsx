@@ -77,7 +77,6 @@ export default function AuthProvider({ children }) {
     try {
       const { user } = await getUserApi();
       dispatch({ type: "user/loaded", payload: user });
-      console.log(user);
     } catch (error) {
       dispatch({ type: "rejected", payload: error?.response?.data?.message });
       toast.error(error?.response?.data?.message);
