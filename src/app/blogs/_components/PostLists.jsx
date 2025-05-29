@@ -1,19 +1,11 @@
-import Image from "next/image";
 import CoverImage from "../../../components/CoverImage";
 import Link from "next/link";
 import { ClockIcon } from "@heroicons/react/24/outline";
-import Avatar from "../../../ui/Avatar";
 import Author from "./Author";
 import PostInteraction from "./PostInteraction";
 import { toPersianDigits } from "../../../utils/numberFormatter";
-import { getPosts } from "../../../services/postServices";
-import setCookieOnReq from "../../../utils/setCookieOnReq";
-import { cookies } from "next/headers";
 
-async function PostLists() {
-  const cookiesStore = cookies();
-  const options = setCookieOnReq(cookiesStore);
-  const posts = await getPosts(options);
+async function PostLists({ posts }) {
   return (
     <div className="grid grid-cols-12 gap-8">
       {posts.map((post) => (
