@@ -25,3 +25,9 @@ export async function LikePostApi(postId) {
     .post(`${process.env.NEXT_PUBLIC_BASE_URL}/post/like/${postId}`)
     .then(({ data }) => data.data);
 }
+
+export async function BookmarkPostApi(postId) {
+  return http
+    .post(`${process.env.NEXT_PUBLIC_BASE_URL}/post/bookmark/${postId}`)
+    .then(({ data }) => data.data);
+}
