@@ -6,6 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Link from "next/link";
 import { useAuth } from "../../../context/AuthContext";
+import { useRouter } from "next/navigation";
 
 const schema = yup
   .object({
@@ -28,9 +29,10 @@ function page() {
   });
 
   const { signin } = useAuth();
-
+  const router = useRouter();
   const onSubmit = async (values) => {
     await signin(values);
+    router.push("/blogs");
   };
 
   return (

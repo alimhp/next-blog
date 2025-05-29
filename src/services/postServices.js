@@ -1,3 +1,5 @@
+import http from "./httpServices";
+
 export async function getpostbySlug(slug) {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/post/slug/${slug}`
@@ -7,10 +9,19 @@ export async function getpostbySlug(slug) {
   return post;
 }
 
-export async function getPosts() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/post/list`);
+export async function getPosts(options) {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/post/list`,
+    options
+  );
   const {
     data: { posts },
   } = await res.json();
   return posts;
+}
+
+export async function LikePostApi(postId) {
+  return http
+    .post(`${process.env.NEXT_PUBLIC_BASE_URL}/post/like/${postId}`)
+    .then(({ data }) => data.data);
 }

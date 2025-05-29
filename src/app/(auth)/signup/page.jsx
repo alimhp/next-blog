@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 import Link from "next/link";
 import { useAuth } from "../../../context/AuthContext";
 import SpinnerMini from "../../../ui/SpinnerMini";
+import { useRouter } from "next/navigation";
 
 const schema = yup
   .object({
@@ -35,9 +36,10 @@ function signup() {
     mode: "onTouched",
   });
   const { signup } = useAuth();
-
+  const route = useRouter();
   const onSubmit = async (values) => {
     await signup(values);
+    route.push("/blogs");
   };
 
   return (
