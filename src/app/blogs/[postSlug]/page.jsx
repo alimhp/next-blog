@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getpostbySlug, getPosts } from "../../../services/postServices";
+import RelatedPost from "../_components/RelatedPost";
 
 export async function generateMetadata({ params }) {
   const post = await getpostbySlug(params.postSlug);
@@ -35,7 +36,7 @@ async function SinglePost({ params }) {
           src={post.coverImageUrl}
         />
       </div>
-      {/* {post.related.length > 0 ? <RelatedPost posts={post.related} /> : null} */}
+      {post.related.length > 0 ? <RelatedPost posts={post.related} /> : null}
       {/* <BlogComments post={post} /> */}
     </div>
   );
